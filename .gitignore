@@ -1,4 +1,13 @@
+credentials.json
+token.json
+temp/
+app/app.js
+app/app.js.map
+app/background.js
+app/background.js.map
+
 # Pulled from electron github gitignore
+
 build/
 dist/
 .DS_Store

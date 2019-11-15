@@ -30,7 +30,8 @@
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
-    "fs-jetpack": "^2.1.0"
+    "fs-jetpack": "^2.1.0",
+    "googleapis": "^39.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

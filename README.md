@@ -14,6 +14,8 @@ npm install
 npm start
 ```
 
+You'll also want to make sure you have the Google Calendar API enabled, and place the credentials.json you recieve in the root of this project folder in order for the API calls for work.
+
 # Structure of the project
 
 The application consists of two main folders...
