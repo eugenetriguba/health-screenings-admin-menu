@@ -1,4 +1,4 @@
-import { expect, it } from "chai";
+import { expect } from "chai";
 import testUtils from "./utils";
 
 describe("application launch", () => {
@@ -6,8 +6,8 @@ describe("application launch", () => {
     afterEach(testUtils.afterEach);
 
     it("shows augustana health screenings admin menu for the title after launch", function() {
-        return this.app.client.getText('title').then(text => {
-            expect(text).to.equal("Augustana Health Screenings Admin Menu");
+        return this.app.client.getTitle().then(title => {
+            expect(title).to.equal("Augustana Health Screenings Admin Menu");
         });
 
     });

@@ -4,14 +4,6 @@ import env from "env";
 import { describe, it } from "mocha";
 
 describe("hello world", () => {
-  it("greets", () => {
-    expect(greet()).to.equal("Hello World!");
-  });
-
-  it("says goodbye", () => {
-    expect(bye()).to.equal("See ya!");
-  });
-
   it("should load test environment variables", () => {
     expect(env.name).to.equal("test");
     expect(env.description).to.equal(
