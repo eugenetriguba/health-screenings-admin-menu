@@ -1,8 +1,6 @@
 # Augustana Health Admin Menu
 
-Project description...
-
-Built off of the electron boilerplate at https://github.com/szwacz/electron-boilerplate
+A desktop application that integrates with Google Calendar to allow the admin to manage the data from screening appointments.
 
 # Quick start
 
@@ -14,7 +12,7 @@ npm install
 npm start
 ```
 
-You'll also want to make sure you have the Google Calendar API enabled, and place the credentials.json you recieve in the root of this project folder in order for the API calls for work.
+You'll also want to make sure you have the Google Calendar API enabled, and place the credentials.json you receive in the ```config/``` directory in order for the API calls for work.
 
 # Structure of the project
 
@@ -22,13 +20,13 @@ The application consists of two main folders...
 
 `src` - files within this folder get transpiled or compiled (because Electron can't use them directly).
 
-`app` - contains all static assets which don't need any pre-processing. Put here images, CSSes, HTMLs, etc.
+`static` - contains all static assets which don't need any pre-processing. Put here images, CSSes, HTMLs, etc.
 
-The build process compiles the content of the `src` folder and puts it into the `app` folder, so after the build has finished, your `app` folder contains the full, runnable application.
+The build process compiles the content of the `src` folder and puts it into the `static` folder, so after the build has finished, your `static` folder contains the full, runnable application.
 
-Treat `src` and `app` folders like two halves of one bigger thing.
+Treat `src` and `static` folders like two halves of one bigger thing.
 
-The drawback of this design is that `app` folder contains some files which should be git-ignored and some which shouldn't (see `.gitignore` file). But this two-folders split makes development builds much, much faster.
+The drawback of this design is that `static` folder contains some files which should be git-ignored and some which shouldn't (see `.gitignore` file). But this two-folders split makes development builds much, much faster.
 
 # Development
 
@@ -80,14 +78,14 @@ npm test
 ```
 npm run unit
 ```
-Using [electron-mocha](https://github.com/jprichardson/electron-mocha) test runner with the [Chai](http://chaijs.com/api/assert/) assertion library. You can put your spec files wherever you want within the `src` directory, just name them with the `.spec.js` extension.
+Using [electron-mocha](https://github.com/jprichardson/electron-mocha) test runner with the [Chai](http://chaijs.com/api/assert/) assertion library. You should put your spec files in the `tests/unit` directory, just name them with the `.spec.js` extension.
 
 ## End to end
 
 ```
 npm run e2e
 ```
-Using [Mocha](https://mochajs.org/) and [Spectron](http://electron.atom.io/spectron/). This task will run all files in `e2e` directory with `.e2e.js` extension.
+Using [Mocha](https://mochajs.org/) and [Spectron](http://electron.atom.io/spectron/). This task will run all files in `tests/e2e` directory with `.e2e.js` extension.
 
 # Making a release
 
@@ -98,6 +96,6 @@ npm run release
 
 Once the packaging process finished, the `dist` directory will contain your distributable file.
 
-We use [electron-builder](https://github.com/electron-userland/electron-builder) to handle the packaging process. It has a lot of [customization options](https://www.electron.build/configuration/configuration), which you can declare under `"build"` key in `package.json`.
+[electron-builder](https://github.com/electron-userland/electron-builder) is used to handle the packaging process. It has a lot of [customization options](https://www.electron.build/configuration/configuration), which you can declare under `"build"` key in `package.json`.
 
-You can package your app cross-platform from a single operating system, [electron-builder kind of supports this](https://www.electron.build/multi-platform-build), but there are limitations and asterisks. That's why this boilerplate doesn't do that by default.
+You can package your app cross-platform from a single operating system, [electron-builder kind of supports this](https://www.electron.build/multi-platform-build), but there are limitations and asterisks.
