@@ -1,13 +1,12 @@
 import { expect } from "chai";
-import { greet, bye } from "../../src/app/hello_world";
 import env from "env";
 import { describe, it } from "mocha";
 
-describe("hello world", () => {
+describe("env and babel", () => {
   it("should load test environment variables", () => {
     expect(env.name).to.equal("test");
     expect(env.description).to.equal(
-      "Add here any environment specific stuff you like."
+      "Environment variable for testing use."
     );
   });
 
