@@ -1,5 +1,5 @@
 // This is main process of Electron, started as first thing when your
-// app starts. It runs through entire life of your application.
+// static starts. It runs through entire life of your application.
 // It doesn't have any windows which you can see on screen, but we can open
 // window from here.
 
@@ -23,7 +23,7 @@ const setApplicationMenu = () => {
 };
 
 // Save userData in separate folders for each environment.
-// Thanks to this you can use production and development versions of the app
+// Thanks to this you can use production and development versions of the static
 // on same machine like those are two separate apps.
 if (env.name !== "production") {
   const userDataPath = app.getPath("userData");

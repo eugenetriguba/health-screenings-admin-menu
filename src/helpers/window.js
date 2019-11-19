@@ -1,5 +1,5 @@
 // This helper remembers the size and position of your windows (and restores
-// them in that place after app relaunch).
+// them in that place after static relaunch).
 // Can be used for more than one window, just construct many
 // instances of it and give each different name.
 
@@ -18,18 +18,20 @@ export default (name, options) => {
 
   const restore = () => {
     let restoredState = {};
+
     try {
       restoredState = userDataDir.read(stateStoreFile, "json");
     } catch (err) {
-      // For some reason json can't be read (might be corrupted).
-      // No worries, we have defaults.
+      // For some reason json can't be read (might be corrupted). No worries, we have defaults.
     }
+
     return Object.assign({}, defaultSize, restoredState);
   };
 
   const getCurrentPosition = () => {
     const position = win.getPosition();
     const size = win.getSize();
+
     return {
       x: position[0],
       y: position[1],
@@ -59,6 +61,7 @@ export default (name, options) => {
     const visible = screen.getAllDisplays().some(display => {
       return windowWithinBounds(windowState, display.bounds);
     });
+
     if (!visible) {
       // Window is partially or fully not visible now.
       // Reset it to safe defaults.
@@ -71,13 +74,12 @@ export default (name, options) => {
     if (!win.isMinimized() && !win.isMaximized()) {
       Object.assign(state, getCurrentPosition());
     }
+
     userDataDir.write(stateStoreFile, state, { atomic: true });
   };
 
   state = ensureVisibleOnSomeDisplay(restore());
-
   win = new BrowserWindow(Object.assign({}, options, state));
-
   win.on("close", saveState);
 
   return win;
