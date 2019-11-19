@@ -2,6 +2,7 @@ config/credentials.json
 token.json
 temp/
 static/app.js
+static/app.js.map
 static/background.*
 
 # Pulled from electron github gitignore
