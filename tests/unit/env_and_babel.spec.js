@@ -1,6 +1,7 @@
 import { expect } from "chai";
-import { greet, bye } from "./hello_world";
+import { greet, bye } from "../../src/app/hello_world";
 import env from "env";
+import { describe, it } from "mocha";
 
 describe("hello world", () => {
   it("greets", () => {
