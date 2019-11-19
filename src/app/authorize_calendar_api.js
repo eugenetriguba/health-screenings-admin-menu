@@ -9,23 +9,20 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 // created automatically when the authorization flow completes for the first time.
 const TOKEN_PATH = '../../config/token.json';
 
-loadCredentials();
+authorizeCalendarApi(retrieveCredentials(), listEvents);
 
 /**
  * Loads client secrets from a local file.
  */
-function loadCredentials() {
-    fs.readFile('../../config/credentials.json', (error, content) => {
-        if (error) {
-            return JSON.stringify({
-                message: 'Error loading client secret file',
-                data: error
-            });
-        }
+function retrieveCredentials(path='../../config/credentials.json') {
+    let credentials = fs.readFileSync(path, 'utf8');
 
-        // Authorize a client with credentials, then call the Google Calendar API.
-        authorizeCalendarApi(JSON.parse(content), listEvents);
-    });
+    if (!credentials) {
+        console.error('Invalid credentials: ' + credentials);
+        return false;
+    }
+
+    return JSON.parse(credentials);
 }
 
 /**
@@ -102,17 +99,17 @@ function getAccessToken(oAuth2Client, callback) {
 function listEvents(auth) {
     const calendar = google.calendar({version: 'v3', auth});
     calendar.events.list({
-        calendarId: 'ole.augie.edu_5ik7tr5u6ngpg71fgfm45h95gk@group.calendar.google.com',
+        calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
         maxResults: 10,
         singleEvents: true,
         orderBy: 'startTime',
-    }, (error, res) => {
+    }, (error, result) => {
         if (error) {
             return console.log('The API returned an error: ' + error);
         }
 
-        const events = res.data.items;
+        const events = result.data.items;
         if (events.length) {
             console.log('Upcoming 10 events:');
             events.map((event, i) => {
