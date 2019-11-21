@@ -7,7 +7,6 @@ static/background.*
 
 # Pulled from electron github gitignore
 
-build/
 dist/
 .DS_Store
 .env
