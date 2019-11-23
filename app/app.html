@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Augustana Health Screenings Admin Menu</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <section class="w-full max-w-3xl m-auto my-8 bg-white rounded-lg shadow-md">
+
+    <header class="p-4 border-b-2 border-gray-200 antialiased">
+      <h1 class="text-gray-800 text-xl">Authorize Google Calendar API</h1>
+    </header>
+
+    <form action="/" method="POST" class="p-4">
+      <div class="flex -mx-3 mb-4 md:mb-0 px-3">
+        <div class="w-full">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-3 antialiased" for="name">
+            URL
+          </label>
+          <p id="calendar-api-authorization-url"></p>
+        </div>
+      </div>
+
+      <div class="flex -mx-3 mb-4 md:mb-0 px-3">
+        <div class="w-full">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-3 antialiased" for="email">
+            Code
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight" type="text" name="email" placeholder="3492048" required>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

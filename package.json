@@ -6,7 +6,7 @@
   "author": "",
   "copyright": "",
   "homepage": "",
-  "main": "static/background.js",
+  "main": "app/background.js",
   "build": {
     "appId": "com.example.electron-boilerplate",
     "files": [

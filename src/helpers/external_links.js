@@ -1,4 +1,4 @@
-// Convenient way for opening links in external browser, not in the static.
+// Convenient way for opening links in external browser, not in the app.
 // Useful especially if you have a lot of links to deal with.
 //
 // Usage:
@@ -27,7 +27,7 @@ const supportExternalLinks = event => {
     if (element.classList.contains("js-external-link")) {
       isExternal = true;
     }
-    
+
     if (href && isExternal) {
       shell.openExternal(href);
       event.preventDefault();

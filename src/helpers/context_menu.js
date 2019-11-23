@@ -1,5 +1,5 @@
 // This gives you default context menu (cut, copy, paste)
-// in all input fields and textareas across your static.
+// in all input fields and textareas across your app.
 
 import { remote } from "electron";
 
