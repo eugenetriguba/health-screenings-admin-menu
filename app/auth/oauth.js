@@ -1,5 +1,3 @@
-'use strict';
-
 import jetpack from 'fs-jetpack';
 import { google } from 'googleapis';
 import { remote } from 'electron';
@@ -9,7 +7,8 @@ import { remote } from 'electron';
  * @param {string} tokenPath - The path to the token.json file
  */
 export class OAuth {
-    constructor(credentials, tokenPath=remote.app.getAppPath() + '/config/token.json') {
+    constructor(credentials,
+                tokenPath=remote.app.getAppPath() + '/config/token.json') {
         this.credentials = credentials.installed;
 
         // The file token.json stores the user's access and refresh tokens, and is
@@ -49,7 +48,12 @@ export class OAuth {
 
             // Store the token to disk for later program executions
             jetpack.write(this.tokenPath, this.token, function(error) {
-                if (error) return console.error(error);
+                if (error) {
+                    console.error('Error while writing token to disk', error);
+                    return false;
+                }
+
+                return true;
             });
         });
     }
@@ -69,10 +73,17 @@ export class OAuth {
  * @return {Object|Boolean}
  */
 export function retrieveCredentials(path = 'config/credentials.json') {
-    let credentials = jetpack.read(path, 'json');
+    let credentials;
 
-    if (!credentials) {
-        console.error('Missing or invalid credentials file', credentials);
+    try {
+        credentials = jetpack.read(path, 'json');
+    } catch(error) {
+        console.error("${path} is a directory and not a file.", error);
+        return false;
+    }
+
+    if (credentials === undefined) {
+        console.error("${path} does not exist.");
         return false;
     }
 
