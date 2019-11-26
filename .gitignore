@@ -1,5 +1,5 @@
 config/credentials.json
-config/token.json
+token.json
 temp/
 static/app.js
 static/app.js.map

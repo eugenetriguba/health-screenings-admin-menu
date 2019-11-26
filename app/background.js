@@ -1,17 +1,10 @@
-// This is app process of Electron, started as first thing when your
-// app starts. It runs through entire life of your application.
-// It doesn't have any windows which you can see on screen, but we can open
-// window from here.
-
 import path from "path";
+import jetpack from "fs-jetpack";
 import url from "url";
 import {app, Menu} from "electron";
 import {devMenuTemplate} from "./menu/dev_menu_template";
 import {editMenuTemplate} from "./menu/edit_menu_template";
 import createWindow from "./helpers/window";
-
-// Special module holding environment variables which you declared
-// in config/env_xxx.json file.
 import env from "env";
 
 const setApplicationMenu = () => {
@@ -43,7 +36,7 @@ app.on("ready", () => {
 
     mainWindow.loadURL(
         url.format({
-            pathname: path.join(__dirname, "../app/views/app.html"),
+            pathname: determineStartingPage(),
             protocol: "file:",
             slashes: true
         })
@@ -57,3 +50,21 @@ app.on("ready", () => {
 app.on("window-all-closed", () => {
     app.quit();
 });
+
+/**
+ * Determine the starting page based on if we've already
+ * authenticated with the calendar api yet.
+ *
+ * @return {string} The path of the starting page
+ */
+function determineStartingPage() {
+    let appPagePath = path.join(__dirname, "../app/views/app.html");
+    let oAuthPagePath = path.join(__dirname, "../app/views/oauth.html");
+    let tokenPath = path.join(__dirname, "../config/token.json");
+
+    if (jetpack.exists(tokenPath)) {
+        return appPagePath;
+    }
+
+    return oAuthPagePath;
+}

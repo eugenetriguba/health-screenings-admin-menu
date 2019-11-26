@@ -3,6 +3,8 @@ import { google } from 'googleapis';
 import { remote } from 'electron';
 
 /**
+ * OAuth with the Google Calendar API
+ *
  * @param {Object} credentials - The authorization client credentials.
  * @param {string} tokenPath - The path to the token.json file
  */
@@ -19,7 +21,8 @@ export class OAuth {
         this.oAuth2Client = new google.auth.OAuth2(
             this.credentials.client_id,
             this.credentials.client_secret,
-            this.credentials.redirect_uris[0]);
+            this.credentials.redirect_uris[0]
+        );
 
         // If modifying these scopes, delete token.json. You can pass multiple
         // scopes in as an array, but we only need access to the calendar at this time.
@@ -37,27 +40,28 @@ export class OAuth {
      * @return {boolean}
      */
     getToken(code) {
-        this.oAuth2Client.getToken(code, function(error, token) {
+        this.oAuth2Client.getToken(code, (error, token) => {
             if (error) {
                 console.error('Error retrieving access token', error);
-                return false;
             }
 
             this.oAuth2Client.setCredentials(token);
             this.token = JSON.stringify(token);
 
-            // Store the token to disk for later program executions
-            jetpack.write(this.tokenPath, this.token, function(error) {
-                if (error) {
-                    console.error('Error while writing token to disk', error);
-                    return false;
-                }
-
-                return true;
-            });
+            try {
+                jetpack.write(this.tokenPath, this.token);
+            } catch(error) {
+                console.error("Unable to save token file", error);
+            }
         });
     }
 
+    /**
+     * Generates a url for authorizing the calendar api which
+     * is where we would retrieve the code to generate a token.
+     *
+     * @returns {string} auth url
+     */
     generateAuthUrl() {
         return this.oAuth2Client.generateAuthUrl({
             access_type: 'offline',
