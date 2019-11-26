@@ -6,11 +6,11 @@
   "author": "",
   "copyright": "",
   "homepage": "",
-  "main": "app/background.js",
+  "main": "temp/background.js",
   "build": {
-    "appId": "com.example.electron-boilerplate",
+    "appId": "com.example.augustana-health-admin-menu",
     "files": [
-      "app/**/*",
+      "temp/**/*",
       "node_modules/**/*",
       "package.json"
     ],
@@ -24,12 +24,13 @@
     "preunit": "webpack --config=build/webpack.unit.config.js --env=test --display=none",
     "unit": "electron-mocha temp/specs.js --renderer --require source-map-support/register",
     "pree2e": "webpack --config=build/webpack.app.config.js --env=test --display=none && webpack --config=build/webpack.e2e.config.js --env=test --display=none",
-    "e2e": "mocha temp/e2e.js --require source-map-support/register",
+    "e2e": "mocha --timeout=10000 temp/e2e.js --require source-map-support/register",
     "test": "npm run unit && npm run e2e",
     "start": "node build/start.js",
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
+    "electron-router": "^0.4.4",
     "fs-jetpack": "^2.1.0",
     "googleapis": "^39.2.0",
     "sqlite3": "^4.1.0"

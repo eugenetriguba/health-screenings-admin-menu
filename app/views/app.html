@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Augustana Health Screenings Admin Menu</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="../../temp/app.js"></script>
+  </head>
+  <body class="bg-gray-100">
+
+    <section class="w-full max-w-3xl m-auto my-8 bg-white rounded-lg shadow-lg">
+
+      <header class="p-4 border-b-2 antialiased">
+        <h1 class="text-gray-800 text-xl">Authorize with Google Calendar</h1>
+      </header>
+
+      <main class="p-6">
+
+        <p class="mb-6">
+          Since this application talks directly with Google Calendar, you'll have to authorize it
+          to have access to your calendar before we can get started. If you go to the URL below, the
+          webpage will present a code for you which you can enter into the form below.
+        </p>
+
+        <div class="mb-6 overflow-hidden w-full">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold antialiased mb-2">
+            Authorization URL</label>
+          <a class="js-external-link" id="calendar-api-authorization-url" href="http://google.com"></a>
+        </div>
+
+        <form action="/oauth" method="POST">
+          <div class="mb-4 w-full">
+            <label class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 antialiased"
+                   for="code">
+              Code
+            </label>
+
+            <input class="appearance-none w-2/3 bg-gray-200 text-gray-700 border rounded py-3 px-4
+                          mb-2 leading-tight focus:outline-none" type="text" name="code" id="code" required>
+
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 hover:text-gray-200 inline text-white
+                                         font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                                         tracking-wide ease-in antialiased">
+              Submit Code
+            </button>
+          </div>
+        </form>
+      </main>
+
+    </section>
+
+  </body>
+</html>

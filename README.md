@@ -12,21 +12,7 @@ npm install
 npm start
 ```
 
-You'll also want to make sure you have the Google Calendar API enabled, and place the credentials.json you receive in the ```config/``` directory in order for the API calls for work.
-
-# Structure of the project
-
-The application consists of two main folders...
-
-`src` - files within this folder get transpiled or compiled (because Electron can't use them directly).
-
-`app` - contains all static assets which don't need any pre-processing. Put here images, CSSes, HTMLs, etc.
-
-The build process compiles the content of the `src` folder and puts it into the `app` folder, so after the build has finished, your `app` folder contains the full, runnable application.
-
-Treat `src` and `app` folders like two halves of one bigger thing.
-
-The drawback of this design is that `app` folder contains some files which should be git-ignored and some which shouldn't (see `.gitignore` file). But this two-folders split makes development builds much, much faster.
+You'll also want to make sure you have the [Google Calendar API](https://developers.google.com/calendar/quickstart/nodejs) enabled, and place the credentials.json you receive in the ```config/``` directory in order for the API calls for work.
 
 # Development
 
@@ -38,7 +24,7 @@ npm start
 
 ## The build pipeline
 
-Build process uses [Webpack](https://webpack.js.org/). The entry-points are `src/background.js` and `src/app.js`. Webpack will follow all `import` statements starting from those files and compile code of the whole dependency tree into one `.js` file for each entry point.
+Build process uses [Webpack](https://webpack.js.org/). The entry-points are `app/background.js` and `app/app.js`. Webpack will follow all `import` statements starting from those files and compile code of the whole dependency tree into one `.js` file for each entry point.
 
 [Babel](http://babeljs.io/) is also utilised, but mainly for its great error messages. Electron under the hood runs latest Chromium, hence most of the new JavaScript features are already natively supported.
 

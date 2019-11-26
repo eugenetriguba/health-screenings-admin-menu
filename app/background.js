@@ -1,4 +1,4 @@
-// This is main process of Electron, started as first thing when your
+// This is app process of Electron, started as first thing when your
 // app starts. It runs through entire life of your application.
 // It doesn't have any windows which you can see on screen, but we can open
 // window from here.
@@ -43,7 +43,7 @@ app.on("ready", () => {
 
     mainWindow.loadURL(
         url.format({
-            pathname: path.join(__dirname, "app.html"),
+            pathname: path.join(__dirname, "../app/views/app.html"),
             protocol: "file:",
             slashes: true
         })
