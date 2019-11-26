@@ -1,0 +1,39 @@
+extends layouts/default_layout.pug
+
+block vars
+    - bodyClass = 'flex justify-center items-center m-0 p-0 bg-gray-100'
+
+block content
+    section(class='w-full max-w-3xl m-auto my-8 bg-white rounded-lg shadow-lg')
+        header(class='p-4 border-b-2 antialiased')
+            h1(class='text-gray-800 text-xl') Authorize with Google Calendar
+
+        main(class='p-6')
+            p(class='mb-6')
+                | Since this application talks directly with Google Calendar, you'll
+                | have to authorize it to have access to your calendar before we can get
+                | started. If you go to the URL below, the webpage will present a code for
+                | you which you can enter into the form below.
+
+            div(class='mb-6 overflow-hidden w-full')
+                label(class='block uppercase tracking-wide text-gray-700 text-xs ' +
+                            'font-bold antialiased mb-2') Authorization URL
+                a(class='js-external-link' id='calendar-api-authorization-url' target='_blank')
+
+            div(class='mb-4 w-full')
+                label(class='bw-full block uppercase tracking-wide text-gray-700 ' +
+                            'text-xs font-bold mb-2 antialiased' for='code')
+                input(class='appearance-none w-2/3 bg-gray-200 text-gray-700 border ' +
+                            'rounded py-3 px-4 mb-2 leading-tight focus:outline-none'
+                      type="text" name="code" id="code" required)
+                button(class='bg-blue-500 font-bold py-2 px-4 rounded inline text-white ' +
+                             'tracking-wide ease-in antialiased hover:bg-blue-700 ' +
+                             'hover:text-gray-200 focus:outline-none focus:shadow-outline'
+                       type='submit') Submit Code
+
+
+
+block scripts
+    script(src="../../temp/app.js")
+
+

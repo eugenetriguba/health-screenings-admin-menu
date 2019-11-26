@@ -3,6 +3,8 @@
  * @see https://electronjs.org/docs/tutorial/application-architecture
  */
 
+const setupPug = require('electron-pug');
+
 import path from "path";
 import jetpack from "fs-jetpack";
 import url from "url";
@@ -28,8 +30,15 @@ if (env.name !== "production") {
     app.setPath("userData", `${userDataPath} (${env.name})`);
 }
 
-app.on("ready", () => {
+app.on("ready", async () => {
     setApplicationMenu();
+
+    try {
+        let pug = await setupPug({pretty: true});
+        pug.on('error', err => console.error('electron-pug error', err))
+    } catch (err) {
+        // Could not initiate 'electron-pug'
+    }
 
     const mainWindow = createWindow("main", {
         width: 1000,
@@ -63,8 +72,8 @@ app.on("window-all-closed", () => {
  * @return {string} The path of the starting page
  */
 function determineStartingPage() {
-    let appPagePath = path.join(__dirname, "../app/views/app.html");
-    let oAuthPagePath = path.join(__dirname, "../app/views/oauth.html");
+    let appPagePath = path.join(__dirname, "../app/views/app.pug");
+    let oAuthPagePath = path.join(__dirname, "../app/views/oauth.pug");
     let tokenPath = path.join(__dirname, "../config/token.json");
 
     if (jetpack.exists(tokenPath)) {
