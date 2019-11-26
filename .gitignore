@@ -1,9 +1,9 @@
 config/credentials.json
 token.json
 temp/
-app/app.js
-app/app.js.map
-app/background.*
+static/app.js
+static/app.js.map
+static/background.*
 
 # Pulled from electron github gitignore
 
