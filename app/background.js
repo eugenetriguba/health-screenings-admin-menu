@@ -1,3 +1,8 @@
+/**
+ * Background.js is the main electron process.
+ * @see https://electronjs.org/docs/tutorial/application-architecture
+ */
+
 import path from "path";
 import jetpack from "fs-jetpack";
 import url from "url";
