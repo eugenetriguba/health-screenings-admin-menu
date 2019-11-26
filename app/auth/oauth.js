@@ -82,12 +82,12 @@ export function retrieveCredentials(path = 'config/credentials.json') {
     try {
         credentials = jetpack.read(path, 'json');
     } catch(error) {
-        console.error("${path} is a directory and not a file.", error);
+        console.error(`${path} is a directory and not a file.`, error);
         return false;
     }
 
     if (credentials === undefined) {
-        console.error("${path} does not exist.");
+        console.error(`${path} does not exist.`);
         return false;
     }
 
