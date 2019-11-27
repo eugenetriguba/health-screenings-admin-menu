@@ -73,6 +73,12 @@ npm run e2e
 ```
 Using [Mocha](https://mochajs.org/) and [Spectron](http://electron.atom.io/spectron/). This task will run all files in `tests/e2e` directory with `.e2e.js` extension.
 
+## Database
+This application uses the Sequelize ORM. You may want to install the [sequelize-cli](https://sequelize.readthedocs.io/en/latest/docs/migrations/) globally.
+```
+npm install -g sequelize-cli
+```
+
 # Making a release
 
 To package your app into an installer use command:
