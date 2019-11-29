@@ -4,6 +4,8 @@ temp/
 static/app.js
 static/app.js.map
 static/background.*
+database-dev.sqlite3
+database.sqlite3
 
 # Pulled from electron github gitignore
 

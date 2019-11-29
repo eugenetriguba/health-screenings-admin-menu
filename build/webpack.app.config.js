@@ -6,7 +6,8 @@ module.exports = env => {
     return merge(base(env), {
         entry: {
             background: "./app/background.js",
-            app: "./app/auth.js"
+            auth: "./app/renderers/auth.js",
+            app: "./app/renderers/app.js",
         },
 
         output: {

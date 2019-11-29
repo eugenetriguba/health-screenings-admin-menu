@@ -9,8 +9,7 @@ import { remote } from 'electron';
  * @param {string} tokenPath - The path to the token.json file
  */
 export class OAuth {
-    constructor(credentials,
-                tokenPath=remote.app.getAppPath() + '/config/token.json') {
+    constructor(credentials, tokenPath=remote.app.getAppPath() + '/config/token.json') {
         this.credentials = credentials.installed;
 
         // The file token.json stores the user's access and refresh tokens, and is
@@ -71,10 +70,10 @@ export class OAuth {
 }
 
 /**
- * Loads client secrets from a local file.
+ * Retrieves client secrets from a local file.
  *
  * @param {string} path - Path to credentials.json
- * @return {Object|Boolean}
+ * @return {Object|Boolean} - The credentials file or false if not found.
  */
 export function retrieveCredentials(path = 'config/credentials.json') {
     let credentials;
