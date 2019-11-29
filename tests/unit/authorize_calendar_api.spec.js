@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import testUtils from "../utils";
-import { OAuth, retrieveCredentials } from "../../app/scripts/auth/oauth";
+import { OAuth, retrieveCredentials } from "../../app/scripts/oauth";
 
 describe("oauth with calendar api", () => {
     it("returns false when the credentials file does not exist or is a folder", function() {

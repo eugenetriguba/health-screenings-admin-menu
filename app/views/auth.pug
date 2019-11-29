@@ -17,21 +17,21 @@ block content
 
       div(class='mb-6 overflow-hidden w-full')
         label(class='block uppercase tracking-wide text-gray-700 text-xs ' +
-        'font-bold antialiased mb-2') Authorization URL
+                    'font-bold antialiased mb-2') Authorization URL
         a(class='js-external-link' id='calendar-api-authorization-url' target='_blank')
 
       div(class='mb-4 w-full')
         label(class='bw-full block uppercase tracking-wide text-gray-700 ' +
-        'text-xs font-bold mb-2 antialiased' for='code') Code
+                    'text-xs font-bold mb-2 antialiased' for='code') Code
         input(class='appearance-none w-2/3 bg-gray-200 text-gray-700 border ' +
-        'rounded py-3 px-4 mb-2 leading-tight focus:outline-none'
-          type="text" name="code" id="code" required)
+                    'rounded py-3 px-4 mb-2 leading-tight focus:outline-none'
+              type="text" name="code" id="code" required)
         button(class='bg-blue-500 font-bold py-2 px-4 rounded inline text-white ' +
-        'tracking-wide ease-in antialiased hover:bg-blue-700 ' +
-        'hover:text-gray-200 focus:outline-none focus:shadow-outline'
-          type='submit') Submit Code
+                     'tracking-wide ease-in antialiased hover:bg-blue-700 ' +
+                      'hover:text-gray-200 focus:outline-none focus:shadow-outline'
+               type='submit' id='submit-auth-code') Submit Code
 
 block scripts
-  script(src="../../temp/app.js")
+  script(src="../../temp/auth.js")
 
 
