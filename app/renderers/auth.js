@@ -11,6 +11,6 @@ authUrlLink.innerHTML = authUrl;
 
 document.querySelector('#submit-auth-code').addEventListener('click', () => {
     let code = document.querySelector('#code').value;
-    auth.getToken(code);
+    setTimeout(auth.getToken(code), 5000);
     remote.getCurrentWindow().loadURL(`file://${__dirname}/app.pug`);
 });
