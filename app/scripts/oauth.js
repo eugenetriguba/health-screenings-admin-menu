@@ -24,7 +24,7 @@ export class OAuth {
         this.oAuth2Client = new google.auth.OAuth2(
             this.credentials.client_id,
             this.credentials.client_secret,
-            this.credentials.redirect_uris[1]
+            this.credentials.redirect_uris[0]
         );
 
         // The file token.json stores the user's access and refresh tokens, and is

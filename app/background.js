@@ -63,7 +63,7 @@ app.on("ready", async () => {
         width: 1000,
         height: 600,
         webPreferences: {
-            nodeIntegration: false
+            nodeIntegration: true
         },
     });
 
@@ -78,8 +78,6 @@ app.on("ready", async () => {
     if (env.name === "development") {
         mainWindow.openDevTools();
     }
-
-    server.listen(80, 'current_local_ip');
 });
 
 app.on("window-all-closed", () => {
