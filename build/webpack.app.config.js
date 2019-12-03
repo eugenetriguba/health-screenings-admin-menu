@@ -7,7 +7,7 @@ module.exports = env => {
         entry: {
             background: "./app/background.js",
             auth: "./app/renderers/auth.js",
-            app: "./app/renderers/app.js",
+            app: "./app/renderers/app.js"
         },
 
         output: {

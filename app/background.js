@@ -13,6 +13,26 @@ import { editMenuTemplate } from "./menu/edit_menu_template";
 import createWindow from "./helpers/window";
 import env from "env";
 
+/**
+ * Determine the starting page based on if we've already
+ * authenticated with the calendar api yet.
+ *
+ * @return {string} The path of the starting page
+ */
+function determineStartingPage() {
+    let appPagePath = path.join(__dirname, "../app/views/app.pug");
+    let oAuthPagePath = path.join(__dirname, "../app/views/auth.pug");
+    let tokenPath = path.join(__dirname, "../config/token.json");
+
+    let token = jetpack.read(tokenPath, 'json');
+
+    if (jetpack.exists(tokenPath) && token !== null) {
+        return appPagePath;
+    }
+
+    return oAuthPagePath;
+}
+
 const setApplicationMenu = () => {
     const menus = [editMenuTemplate];
     if (env.name !== "production") {
@@ -43,7 +63,7 @@ app.on("ready", async () => {
         width: 1000,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: false
         },
     });
 
@@ -58,26 +78,10 @@ app.on("ready", async () => {
     if (env.name === "development") {
         mainWindow.openDevTools();
     }
+
+    server.listen(80, 'current_local_ip');
 });
 
 app.on("window-all-closed", () => {
     app.quit();
 });
-
-/**
- * Determine the starting page based on if we've already
- * authenticated with the calendar api yet.
- *
- * @return {string} The path of the starting page
- */
-function determineStartingPage() {
-    let appPagePath = path.join(__dirname, "../app/views/app.pug");
-    let oAuthPagePath = path.join(__dirname, "../app/views/auth.pug");
-    let tokenPath = path.join(__dirname, "../config/token.json");
-
-    if (jetpack.exists(tokenPath)) {
-        return appPagePath;
-    }
-
-    return oAuthPagePath;
-}

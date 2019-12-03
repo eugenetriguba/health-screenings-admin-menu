@@ -79,6 +79,11 @@ This application uses the Sequelize ORM. You may want to install the [sequelize-
 npm install -g sequelize-cli
 ```
 
+Then migrate the database.
+```
+sequelize db:migrate
+```
+
 # Making a release
 
 To package your app into an installer use command:
