@@ -20,7 +20,7 @@ import env from "env";
  * @return {string} The path of the starting page
  */
 function determineStartingPage() {
-    let appPagePath = path.join(__dirname, "../app/views/app.pug");
+    let appPagePath = path.join(__dirname, "../app/views/home.pug");
     let oAuthPagePath = path.join(__dirname, "../app/views/auth.pug");
     let tokenPath = path.join(__dirname, "../config/token.json");
 
