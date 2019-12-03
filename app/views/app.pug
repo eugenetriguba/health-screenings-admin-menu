@@ -1,11 +1,9 @@
 extends layouts/default_layout.pug
 
-block vars
-  - var bodyClass = 'p-8'
-
 block content
-  p Welcome to the app! Congrats. You have a token.json file, whoopee.
-  p#events
+  main(class='p-8 ml-64 bg-gray-100 h-screen')
+    p Welcome to the app! Congrats. You have a token.json file, whoopee.
+    p#events
 
 block scripts
   script(src="../../temp/app.js")

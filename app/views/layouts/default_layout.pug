@@ -15,5 +15,6 @@ html(lang='en')
         // Temporary until we get tailwindcss into the webpack build
         link(href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet")
     body(class=bodyClass)
+        include ../includes/nav.pug
         block content
         block scripts
