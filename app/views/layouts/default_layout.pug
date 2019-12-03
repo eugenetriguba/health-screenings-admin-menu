@@ -16,5 +16,6 @@ html(lang='en')
         link(href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet")
     body(class=bodyClass)
         include ../includes/nav.pug
-        block content
-        block scripts
+        main(class='p-8 ml-64 bg-gray-100 h-screen')
+            block content
+            block scripts

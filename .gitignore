@@ -1,9 +1,6 @@
 config/credentials.json
 token.json
 temp/
-static/app.js
-static/app.js.map
-static/background.*
 database-dev.sqlite3
 database.sqlite3
 
