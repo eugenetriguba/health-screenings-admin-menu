@@ -7,7 +7,7 @@ import { app } from "electron";
 import env from "env";
 import url from "url";
 import setupPug from 'electron-pug';
-import { setApplicationMenu, determineStartingPage, setupIpcEvents } from './helpers/startup';
+import { setApplicationMenu, determineStartingPage } from './helpers/startup';
 import createWindow from "./helpers/window";
 
 // Save userData in separate folders for each environment.
@@ -20,7 +20,6 @@ if (env.name !== "production") {
 
 app.on("ready", async () => {
     setApplicationMenu();
-    setupIpcEvents();
 
     // Setup the pug file translator
     try {

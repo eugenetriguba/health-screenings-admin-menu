@@ -1,18 +1,9 @@
 import path from "path";
 import env from "env";
 import jetpack from "fs-jetpack";
-import settings from "electron-settings";
 import { editMenuTemplate } from "../menu/edit_menu_template";
 import { devMenuTemplate } from "../menu/dev_menu_template";
-import { Menu , ipcMain } from "electron";
-
-/**
- * Sets up Inter-process communication events
- * for the main electron process.
- */
-export function setupIpcEvents() {
-    // WIP
-}
+import { Menu } from "electron";
 
 /**
  * Determine the starting page based on if we've already
