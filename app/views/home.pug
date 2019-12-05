@@ -1,8 +1,9 @@
 extends layouts/sidebar_layout.pug
 
 block main
-    p Welcome to the app! Congrats. You have a token.json file, whoopee.
-    p#events
+    h1(class="text-gray-800 text-xl mb-4") Calendar Events
+    p#status
+    ul#events
 
 block scripts
     script(src="../../temp/home.js")

@@ -3,43 +3,12 @@
  * @see https://electronjs.org/docs/tutorial/application-architecture
  */
 
-import url from "url";
-import path from "path";
-import jetpack from "fs-jetpack";
-import setupPug from 'electron-pug';
-import { app, Menu } from "electron";
-import { devMenuTemplate } from "./menu/dev_menu_template";
-import { editMenuTemplate } from "./menu/edit_menu_template";
-import createWindow from "./helpers/window";
+import { app } from "electron";
 import env from "env";
-
-/**
- * Determine the starting page based on if we've already
- * authenticated with the calendar api yet.
- *
- * @return {string} The path of the starting page
- */
-function determineStartingPage() {
-    let appPagePath = path.join(__dirname, "../app/views/home.pug");
-    let oAuthPagePath = path.join(__dirname, "../app/views/auth.pug");
-    let tokenPath = path.join(__dirname, "../config/token.json");
-
-    let token = jetpack.read(tokenPath, 'json');
-
-    if (jetpack.exists(tokenPath) && token !== null) {
-        return appPagePath;
-    }
-
-    return oAuthPagePath;
-}
-
-const setApplicationMenu = () => {
-    const menus = [editMenuTemplate];
-    if (env.name !== "production") {
-        menus.push(devMenuTemplate);
-    }
-    Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
-};
+import url from "url";
+import setupPug from 'electron-pug';
+import { setApplicationMenu, determineStartingPage, setupIpcEvents } from './helpers/startup';
+import createWindow from "./helpers/window";
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -51,7 +20,9 @@ if (env.name !== "production") {
 
 app.on("ready", async () => {
     setApplicationMenu();
+    setupIpcEvents();
 
+    // Setup the pug file translator
     try {
         let pug = await setupPug({pretty: true});
         pug.on('error', err => console.error('electron-pug error', err))
@@ -63,8 +34,7 @@ app.on("ready", async () => {
         width: 1000,
         height: 600,
         webPreferences: {
-            nodeIntegration: true,
-            webSecurity: false
+            nodeIntegration: true
         },
     });
 

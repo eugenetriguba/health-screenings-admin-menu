@@ -9,7 +9,8 @@ module.exports = env => {
             auth: "./app/renderers/auth.js",
             home: "./app/renderers/home.js",
             waitlist: "./app/renderers/waitlist.js",
-            screenings: "./app/renderers/screenings.js"
+            screenings: "./app/renderers/screenings.js",
+            settings: "./app/renderers/settings.js"
         },
 
         output: {
