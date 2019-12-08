@@ -1,5 +1,5 @@
-import { expect, it } from "chai";
-import { describe } from "mocha";
+import { expect } from "chai";
+import { describe, it } from "mocha";
 import testUtils from "../utils";
 import OAuth from "../../app/scripts/oauth";
 
