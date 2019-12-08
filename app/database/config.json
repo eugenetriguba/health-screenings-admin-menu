@@ -2,7 +2,7 @@
   "development": {
     "database": "database_development",
     "dialect": "sqlite",
-    "storage": "./app/database/database-dev.sqlite3"
+    "storage": "./app/database/database_dev.sqlite3"
   },
   "test": {
     "database": "database_test",

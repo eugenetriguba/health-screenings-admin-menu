@@ -1,6 +1,6 @@
-import jetpack from 'fs-jetpack';
-import { google } from 'googleapis';
-import { remote } from 'electron';
+import jetpack from "fs-jetpack";
+import { google } from "googleapis";
+import { remote } from "electron";
 
 /**
  * OAuth with the Google Calendar API
@@ -10,14 +10,16 @@ import { remote } from 'electron';
  * @throws Error if there is an invalid credential file.
  */
 export default class OAuth {
-    constructor(credentialsPath=remote.app.getAppPath()+'/config/credentials.json',
-                tokenPath=remote.app.getAppPath()+'/config/token.json') {
+    constructor(
+        credentialsPath = remote.app.getAppPath() + "/config/credentials.json",
+        tokenPath = remote.app.getAppPath() + "/config/token.json"
+    ) {
         this.credentials = undefined;
         this.token = undefined;
 
         // If modifying these scopes, delete token.json. You can pass multiple
         // scopes in as an array, but we only need access to the calendar at this time.
-        this.scope = ['https://www.googleapis.com/auth/calendar.readonly'];
+        this.scope = ["https://www.googleapis.com/auth/calendar.readonly"];
 
         this.setCredentials(credentialsPath);
 
@@ -33,11 +35,10 @@ export default class OAuth {
 
         try {
             this.setToken(tokenPath);
-        } catch(error) {
+        } catch (error) {
             console.log(error.message);
             this.token = undefined;
         }
-
     }
 
     /**
@@ -51,13 +52,14 @@ export default class OAuth {
         let credentials;
 
         try {
-            credentials = jetpack.read(path, 'json');
-        } catch(error) {
+            credentials = jetpack.read(path, "json");
+            this.credentials = credentials.installed;
+        } catch (error) {
             this.credentials = undefined;
-            throw new Error(error.message);
+            throw new Error(
+                "Cannot continue with oauth without a credentials.json file"
+            );
         }
-
-        this.credentials = credentials.installed;
     }
 
     /**
@@ -65,12 +67,13 @@ export default class OAuth {
      * for the oAuth2Client.
      *
      * @param {string|Object} token
+     * @throws Error if the token file doesn't exist or could not be read.
      */
     setToken(token) {
-        if (typeof token === 'string') {
+        if (typeof token === "string") {
             try {
-                token = jetpack.read(token, 'json');
-            } catch(error) {
+                token = jetpack.read(token, "json");
+            } catch (error) {
                 this.token = undefined;
                 throw new Error(error.message);
             }
@@ -97,7 +100,7 @@ export default class OAuth {
 
             try {
                 jetpack.write(this.tokenPath, JSON.stringify(this.token));
-            } catch(error) {
+            } catch (error) {
                 throw new Error(error.message);
             }
 
@@ -110,7 +113,7 @@ export default class OAuth {
      * need to check if the token is expired and refresh it if so.
      */
     refreshToken() {
-
+        console.log("Refreshing!");
     }
 
     /**
@@ -123,12 +126,14 @@ export default class OAuth {
     generateAuthUrl() {
         if (this.oAuth2Client !== undefined) {
             return this.oAuth2Client.generateAuthUrl({
-                access_type: 'offline',
-                scope: this.scope,
+                access_type: "offline",
+                scope: this.scope
             });
         }
 
-        throw new Error('oAuth2Client has not been initialized. ' +
-                        'Check to make sure you have a valid credential and token file.');
+        throw new Error(
+            "oAuth2Client has not been initialized. " +
+                "Check to make sure you have a valid credential and token file."
+        );
     }
 }
