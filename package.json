@@ -27,7 +27,27 @@
     "e2e": "mocha --timeout=10000 temp/e2e.js --require source-map-support/register",
     "test": "npm run unit && npm run e2e",
     "start": "node build/start.js",
-    "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
+    "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder",
+    "lint": "lint-staged"
+  },
+  "pre-commit": [
+    "test",
+    "lint"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "*.css": [
+      "stylelint --syntax=css",
+      "git add"
+    ],
+    "*.pug": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "googleapis": "^39.2.0",
@@ -40,14 +60,19 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@prettier/plugin-pug": "^1.1.0",
     "babel-loader": "^8.0.0-beta.4",
     "chai": "^4.1.0",
     "css-loader": "^3.1.0",
     "electron": "^4.0.0",
     "electron-builder": "^21.1.5",
     "electron-mocha": "^8.1.1",
+    "eslint": "^6.7.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "lint-staged": "^9.5.0",
     "mocha": "^6.2.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.19.1",
     "serialize-javascript": ">=2.1.1",
     "source-map-support": "^0.5.6",
     "spectron": "^6.0.0",

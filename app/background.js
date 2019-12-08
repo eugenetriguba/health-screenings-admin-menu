@@ -3,14 +3,12 @@
  * @see https://electronjs.org/docs/tutorial/application-architecture
  */
 
-import {app, remote} from "electron";
+import { app } from "electron";
 import env from "env";
 import url from "url";
-import setupPug from 'electron-pug';
-import { setApplicationMenu, determineStartingPage } from './helpers/startup';
+import setupPug from "electron-pug";
+import { setApplicationMenu, determineStartingPage } from "./helpers/startup";
 import createWindow from "./helpers/window";
-
-export const APP_PATH = app.getAppPath();
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -25,8 +23,8 @@ app.on("ready", async () => {
 
     // Setup the pug file translator
     try {
-        let pug = await setupPug({pretty: true});
-        pug.on('error', err => console.error('electron-pug error', err))
+        let pug = await setupPug({ pretty: true });
+        pug.on("error", err => console.error("electron-pug error", err));
     } catch (err) {
         // Could not initiate 'electron-pug'
     }
@@ -36,7 +34,7 @@ app.on("ready", async () => {
         height: 600,
         webPreferences: {
             nodeIntegration: true
-        },
+        }
     });
 
     mainWindow.loadURL(
