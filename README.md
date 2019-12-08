@@ -16,6 +16,9 @@ You'll also want to make sure you have the [Google Calendar API](https://develop
 
 # Development
 
+For development, there is a pre-commit pipeline that will run all the tests and format the files changed to a 
+consist code style before the commit is made.
+
 ## Starting the app
 
 ```
