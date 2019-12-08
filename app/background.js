@@ -3,12 +3,14 @@
  * @see https://electronjs.org/docs/tutorial/application-architecture
  */
 
-import { app } from "electron";
+import {app, remote} from "electron";
 import env from "env";
 import url from "url";
 import setupPug from 'electron-pug';
 import { setApplicationMenu, determineStartingPage } from './helpers/startup';
 import createWindow from "./helpers/window";
+
+export const APP_PATH = app.getAppPath();
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app

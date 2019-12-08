@@ -1,7 +1,7 @@
 import "../stylesheets/main.css";
 import "../helpers/context_menu.js";
 import { remote } from "electron";
-import { OAuth } from "../scripts/oauth";
+import OAuth from "../scripts/oauth";
 
 let auth = new OAuth();
 let authUrl = auth.generateAuthUrl();

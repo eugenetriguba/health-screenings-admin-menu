@@ -9,7 +9,7 @@ import { remote } from 'electron';
  * @param {string} tokenPath - The path to the token.json file
  * @throws Error if there is an invalid credential file.
  */
-export class OAuth {
+export default class OAuth {
     constructor(credentialsPath=remote.app.getAppPath()+'/config/credentials.json',
                 tokenPath=remote.app.getAppPath()+'/config/token.json') {
         this.credentials = undefined;
