@@ -48,6 +48,7 @@
     "electron-mocha": "^8.1.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "mocha": "^6.2.0",
+    "serialize-javascript": ">=2.1.1",
     "source-map-support": "^0.5.6",
     "spectron": "^6.0.0",
     "style-loader": "^0.23.1",
