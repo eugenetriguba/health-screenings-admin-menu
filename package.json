@@ -31,7 +31,7 @@
     "lint": "lint-staged"
   },
   "pre-commit": [
-    "test",
+    "unit",
     "lint"
   ],
   "lint-staged": {
