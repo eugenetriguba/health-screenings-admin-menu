@@ -2,10 +2,17 @@ import settings from "electron-settings";
 import { google } from "googleapis";
 import OAuth from "./oauth";
 
+let S = require("string");
+
 export default class CalendarApi {
     constructor() {
         this.auth = new OAuth();
-        this.tokenExpirationTime = new Date(this.auth.token.expiry_date);
+
+        let auth = this.auth.oAuth2Client;
+        this.calendar = google.calendar({
+            version: "v3",
+            auth
+        });
     }
 
     /**
@@ -33,16 +40,7 @@ export default class CalendarApi {
             orderBy = "startTime"
         } = {}
     ) {
-        if (this.tokenExpirationTime.getTime() < new Date().getTime()) {
-            this.auth.refreshToken();
-        }
-
-        let auth = this.auth.oAuth2Client;
-        const calendar = google.calendar({
-            version: "v3",
-            auth
-        });
-        calendar.events.list(
+        this.calendar.events.list(
             {
                 calendarId: calendarId,
                 timeMin: timeMin,
@@ -60,5 +58,57 @@ export default class CalendarApi {
                 callback(res.data.items);
             }
         );
+    }
+
+    /**
+     * Parse the description for a screening event
+     *
+     * @param {Object} event
+     * @return {Object}
+     *
+     * {
+     *     screeningName: '',
+     *     meetingLocation: '',
+     *     firstName: '',
+     *     lastName: '',
+     *     email: ''
+     * }
+     */
+    parseDescription(event) {
+        let parsed = {
+            screeningName: "",
+            meetingLocation: "",
+            firstName: "",
+            lastName: "",
+            email: ""
+        };
+
+        let description = S(event.description).lines();
+
+        description.forEach((line, index) => {
+            if (
+                line.includes("Meeting Location") &&
+                parsed.meetingLocation === ""
+            ) {
+                parsed.meetingLocation = description[index + 1].trim();
+            } else if (
+                line.includes("Screening") &&
+                parsed.screeningName === ""
+            ) {
+                parsed.screeningName = description[index + 1].trim();
+            } else if (line.includes("Customer Information")) {
+                parsed.email = description[index + 1]
+                    .replace("Email:", "")
+                    .trim();
+                parsed.firstName = description[index + 2]
+                    .replace("First Name:", "")
+                    .trim();
+                parsed.lastName = description[index + 3]
+                    .replace("Last Name:", "")
+                    .trim();
+            }
+        });
+
+        return parsed;
     }
 }
