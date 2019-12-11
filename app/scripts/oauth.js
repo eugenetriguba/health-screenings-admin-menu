@@ -75,7 +75,9 @@ export default class OAuth {
                 token = jetpack.read(token, "json");
             } catch (error) {
                 this.token = undefined;
-                throw new Error(error.message);
+                throw new Error(
+                    "The given token path is invalid. Token could not be set."
+                );
             }
         }
 
@@ -90,7 +92,7 @@ export default class OAuth {
      * @param {string} code - The code presented from visiting the auth url
      * @param {function} callback
      */
-    generateToken(code, callback) {
+    generateToken(code, callback = () => {}) {
         this.oAuth2Client.getToken(code, (error, token) => {
             if (error) {
                 throw new Error(error.message);
@@ -106,14 +108,6 @@ export default class OAuth {
 
             callback();
         });
-    }
-
-    /**
-     * Placeholder. Google API tokens are only good for 1 hour. We will
-     * need to check if the token is expired and refresh it if so.
-     */
-    refreshToken() {
-        console.log("Refreshing!");
     }
 
     /**
