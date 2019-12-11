@@ -1,7 +1,24 @@
 extends layouts/sidebar_layout.pug
 
 block main
-    p Welcome to screenings page!
+    section
+        header(class="bg-white rounded-lg shadow-md h-12")
+            div(class="grid grid-columns-2")
+                p(class="col-span-1 text-gray-700 py-3 pl-4") All Bookings
+
+        div(class="bg-gray-100 rounded-lg shadow-md mt-8")
+
+            header(class="flex rounded-t-lg border-b-2 border-gray-300")
+                div(class="w-1/4 h-12 uppercase tracking-wide text-gray-700 font-bold text-sm antialiased pt-3 ml-6")
+                    | Screening
+                div(class="w-1/4 h-12 uppercase tracking-wide text-gray-700 font-bold text-sm antialiased pt-3")
+                    | Name
+                div(class="w-1/4 h-12 uppercase racking-wide text-gray-700 font-bold text-sm antialiased pt-3")
+                    | Email
+                div(class="w-1/4 h-12 uppercase tracking-wide text-gray-700 font-bold text-sm antialiased pt-3")
+                    | Time Slot
+
+            div(class="flex py-6 border-b-2 hover:bg-gray-100")
 
 block scripts
     script(src="../../temp/screenings.js")
