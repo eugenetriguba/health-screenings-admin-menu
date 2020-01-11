@@ -2,6 +2,10 @@
 
 A desktop application that integrates with Google Calendar to allow the admin to manage the data from screening appointments.
 
+![Auth Image](./docs/auth.png)
+
+![Home Image](./docs/home.png)
+
 # Quick start
 
 Make sure you have [Node.js](https://nodejs.org) installed, then type the following.
