@@ -1,37 +1,43 @@
-extends layouts/page_layout.pug
+extends layouts/base
 
 block vars
-  - bodyClass = 'flex justify-center items-center m-0 p-0 bg-gray-100'
+    - bodyClass = 'flex justify-center items-center m-0 p-0 bg-gray-100';
 
 block content
-  section(class='w-full max-w-3xl m-auto my-8 bg-white rounded-lg shadow-lg')
-    header(class='p-4 border-b-2 antialiased')
-      h1(class='text-gray-800 text-xl') Authorize with Google Calendar
+    section.w-full.max-w-3xl.m-auto.my-8.bg-white.rounded-lg.shadow-lg
+        header.p-4.border-b-2.antialiased
+            h1.text-gray-800.text-xl Authorize with Google Calendar
 
-    main(class='p-6')
-      p(class='mb-6')
-        | Since this application talks directly with Google Calendar, you'll
-        | have to authorize it to have access to your calendar before we can get
-        | started. If you go to the URL below, the webpage will present a code for
-        | you which you can enter into the form below.
+        main.p-6
+            p.mb-6
+                | Since this application talks directly with Google Calendar, you'll
+                | have to authorize it to have access to your calendar before we can get
+                | started. If you go to the URL below, the webpage will present a code for
+                | you which you can enter into the form below.
 
-      div(class='mb-6 overflow-hidden w-full')
-        label(class='block uppercase tracking-wide text-gray-700 text-xs ' +
-                    'font-bold antialiased mb-2') Authorization URL
-        a(class='js-external-link' id='calendar-api-authorization-url' target='_blank')
+            .mb-6(.overflow-hidden.w-full)
+                label.block.uppercase.tracking-wide.text-gray-700.text-xs.antialiased.mb-2(
+                    class="' + 'font-bold"
+                ) Authorization URL
+                a#calendar-api-authorization-url.js-external-link(
+                    target="_blank"
+                )
 
-      div(class='mb-4 w-full')
-        label(class='bw-full block uppercase tracking-wide text-gray-700 ' +
-                    'text-xs font-bold mb-2 antialiased' for='code') Code
-        input(class='appearance-none w-2/3 bg-gray-200 text-gray-700 border ' +
-                    'rounded py-3 px-4 mb-2 leading-tight focus:outline-none'
-              type="text" name="code" id="code" required)
-        button(class='bg-blue-500 font-bold py-2 px-4 rounded inline text-white ' +
-                     'tracking-wide ease-in antialiased hover:bg-blue-700 ' +
-                      'hover:text-gray-200 focus:outline-none focus:shadow-outline'
-               type='submit' id='submit-auth-code') Submit Code
+            .mb-4(.w-full)
+                label.bw-full.block.uppercase.tracking-wide.text-gray-700.font-bold.mb-2.antialiased(
+                    class="' + 'text-xs",
+                    for="code"
+                ) Code
+                input#code.appearance-none.bg-gray-200.text-gray-700.border.py-3.px-4.mb-2.leading-tight(
+                    class="w-2/3 ' + 'rounded focus:outline-none",
+                    type="text",
+                    name="code",
+                    required
+                )
+                button#submit-auth-code.bg-blue-500.font-bold.py-2.px-4.rounded.inline.text-white.ease-in.antialiased(
+                    class="' + 'tracking-wide hover:bg-blue-700 ' + 'hover:text-gray-200 focus:outline-none focus:shadow-outline",
+                    type="submit"
+                ) Submit Code
 
 block scripts
-  script(src="../../temp/auth.js")
-
-
+    script(src="../../temp/auth.js")
