@@ -28,7 +28,9 @@ jobs:
   include:
     - stage: Test
       script:
-          - npm test
+          - nyc npm test
+          - nyc report --reporter=text-lcov > coverage.lcov
+          - ./node_modules/.bin/codecov
     - stage: Deploy Windows & Mac
       if: tag IS present
       os: osx
