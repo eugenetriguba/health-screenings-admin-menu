@@ -1,6 +1,7 @@
 # Augustana Health Admin Menu
 
-![Build Status](https://travis-ci.com/eugenetriguba/health-screenings-admin-menu.svg?branch=master)
+[![Build Status](https://travis-ci.com/eugenetriguba/health-screenings-admin-menu.svg?branch=master)](https://travis-ci.com/eugenetriguba/health-screenings-admin-menu)
+[![Code Coverage](https://codecov.io/gh/eugenetriguba/health-screenings-admin-menu/graph/badge.svg)](https://codecov.io/gh/eugenetriguba/health-screenings-admin-menu)
 
 A desktop application that integrates with Google Calendar to allow the admin to manage the data from screening appointments.
 
