@@ -1,16 +1,16 @@
 import { expect } from "chai";
-import { describe, it } from "mocha";
-import testUtils from "../utils";
+import { suite, test } from "mocha";
+import testUtils from "../../tests/utils";
 import OAuth from "../../app/scripts/oauth";
 
-describe("oauth", () => {
-    it("retrieves credentials when the file is present", function() {
+suite("oauth", () => {
+    test("retrieves credentials when the file is present", function () {
         expect(
             new OAuth(testUtils.DATA_FOLDER_PATH + "/credentials.json")
         ).to.be.instanceOf(Object);
     });
 
-    it("throws error when the credentials file does not exist", function() {
+    test("throws error when the credentials file does not exist", function () {
         let auth = new OAuth(testUtils.DATA_FOLDER_PATH + "/credentials.json");
 
         expect(
@@ -21,7 +21,7 @@ describe("oauth", () => {
         );
     });
 
-    it("throws error when the credentials file is a folder", function() {
+    test("throws error when the credentials file is a folder", function () {
         let auth = new OAuth(testUtils.DATA_FOLDER_PATH + "/credentials.json");
 
         expect(
@@ -32,7 +32,7 @@ describe("oauth", () => {
         );
     });
 
-    it("has an undefined token when the token file is missing", function() {
+    test("has an undefined token when the token file is missing", function () {
         let auth = new OAuth(
             testUtils.DATA_FOLDER_PATH + "/credentials.json",
             "/does/not/exist/token.json"
@@ -41,7 +41,7 @@ describe("oauth", () => {
         expect(auth.token).to.equal(undefined);
     });
 
-    it("has a token when the file is present", function() {
+    test("has a token when the file is present", function () {
         let auth = new OAuth(
             testUtils.DATA_FOLDER_PATH + "/credentials.json",
             testUtils.DATA_FOLDER_PATH + "/token.json"
@@ -54,7 +54,7 @@ describe("oauth", () => {
         expect(auth.token.expiry_date).to.be.a("number");
     });
 
-    it("generates a auth url", function() {
+    test("generates a auth url", function () {
         let authUrl = new OAuth(
             testUtils.DATA_FOLDER_PATH + "/credentials.json",
             testUtils.DATA_FOLDER_PATH + "/token.json"
