@@ -1,31 +1,33 @@
 {
-  "name": "health-screenings-admin-menu",
-  "productName": "Augustana Employee Health Screenings Admin Menu",
-  "main": "src/main/index.js",
-  "version": "0.1.0",
-  "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "electron": "^9.0.4",
-    "react": "^16.13.1",
-    "react-app-rewired": "^2.1.6",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
-  "scripts": {
-    "start-server": "export BROWSER=none && react-app-rewired start",
-    "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    "last 1 electron version"
-  ]
+    "name": "health-screenings-admin-menu",
+    "productName": "Augustana Employee Health Screenings Admin Menu",
+    "main": "src/main/index.js",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.5.0",
+        "@testing-library/user-event": "^7.2.1",
+        "electron": "^9.0.4",
+        "react": "^16.13.1",
+        "react-app-rewired": "^2.1.6",
+        "react-dom": "^16.13.1",
+        "react-scripts": "3.4.1",
+        "source-map-explorer": "^2.4.2"
+    },
+    "scripts": {
+        "start-server": "export BROWSER=none && react-app-rewired start",
+        "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
+        "build": "react-app-rewired build",
+        "test": "react-app-rewired test",
+        "eject": "react-scripts eject",
+        "analyze": "source-map-explorer 'build/static/js/*.js'"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        "last 1 electron version"
+    ]
 }
