@@ -1,17 +1,17 @@
 {
-  "development": {
-    "database": "database_development",
-    "dialect": "sqlite",
-    "storage": "./app/database/database_dev.sqlite3"
-  },
-  "test": {
-    "database": "database_test",
-    "dialect": "sqlite",
-    "storage": ":memory:"
-  },
-  "production": {
-    "database": "database_production",
-    "dialect": "sqlite",
-    "storage": "./app/database/database.sqlite3"
-  }
+    "development": {
+        "database": "database_development",
+        "dialect": "sqlite",
+        "storage": "./app/database/database_dev.sqlite3"
+    },
+    "test": {
+        "database": "database_test",
+        "dialect": "sqlite",
+        "storage": ":memory:"
+    },
+    "production": {
+        "database": "database_production",
+        "dialect": "sqlite",
+        "storage": "./app/database/database.sqlite3"
+    }
 }
