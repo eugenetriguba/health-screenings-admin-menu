@@ -9,6 +9,8 @@
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
+        "commitizen": "^4.1.2",
+        "cz-conventional-changelog": "3.2.0",
         "electron": "^9.0.4",
         "react": "^16.13.1",
         "react-app-rewired": "^2.1.6",
@@ -22,12 +24,18 @@
         "build": "react-app-rewired build",
         "test": "react-app-rewired test",
         "eject": "react-scripts eject",
-        "analyze": "source-map-explorer 'build/static/js/*.js'"
+        "analyze": "source-map-explorer 'build/static/js/*.js'",
+        "commit": "git cz"
     },
     "eslintConfig": {
         "extends": "react-app"
     },
     "browserslist": [
         "last 1 electron version"
-    ]
+    ],
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
 }
